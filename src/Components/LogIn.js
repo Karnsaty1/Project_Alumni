@@ -33,22 +33,32 @@ const LogIn = () => {
         },
         credentials:'include',
         body: JSON.stringify(cred),
-      });
-
-      if (response.ok) {
-        setShowOtp(true);
-        setError('');
-      } else {
-        const errorMessage = await response.text();
-        setError(errorMessage);
+      })
+  
+      if (!response.ok) {
+        console.log(response);
+        console.log("error !!! ");
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    } catch (err) {
+      else {
+         setShowOtp((prev)=>!prev)
+        const data = await response.json();
+        console.log(data); 
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+         
+        }
+      }
+    }
+    catch (err) {
+      console.log(err);
       setError('An error occurred. Please try again.');
     }
     finally{
-      setLoader(false);
+      setLoader(false)
     };
-  };
+  }
+  
 
   const onOtpSubmit = async (e) => {
     e.preventDefault();
@@ -60,6 +70,7 @@ const LogIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email: cred.email, otp, signUp: false }),
+        credentials:'include',
       });
 
       if (response.ok) {

@@ -43,9 +43,9 @@ Router.post('/verifyOTP', async (req, res) => {
     }
 
     if (signUp) {
-      const { password, passedYear, userPackage, position, department } = otpStorage[email];
+      const { password, passingYear, department } = otpStorage[email];
       const userCollections = getDb('profiles');
-      await userCollections.insertOne({ email, password, passedYear, package: userPackage, position, department });
+      await userCollections.insertOne({ email, password, passingYear,  department });
     }
 
     const payload = { email };
@@ -90,7 +90,7 @@ Router.post('/logIn', async (req, res) => {
 
     await sendOtpEmail(email, otp);
 
-    res.status(200).send('OTP has been sent to your email. Please verify to proceed.');
+    res.status(200).json({msg : 'OTP has been sent to your email. Please verify to proceed.'});
   } catch (error) {
     console.log(error);
     res.status(500).send('Internal Server Error');

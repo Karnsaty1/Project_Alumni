@@ -12,6 +12,7 @@ import Donation from './Components/Donation';
 import CalendarView from './Components/CalendarView';
 import Home from './Components/Home';
 import Loading from './Components/Loading';
+import AddSuccess from './Components/AddSuccess';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,7 @@ function App() {
           <Route path="/post/:id" element={<AddPost/>} />
           <Route path="/donate/:id" element={<Donation/>} />
           <Route path="/event/:id" element={<CalendarView/>} />
+          <Route path="/addStory/:id" element={<AddSuccess/>} />
         </Routes>
         </>
                )}
