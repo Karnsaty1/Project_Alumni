@@ -30,7 +30,7 @@ const AddSuccess = () => {
     formData.append('image', details.image); // Image file
 
     try {
-      const response = await fetch('http://localhost:8080/user/data/addStory', {
+      const response = await fetch('process.env.REACT_APP_API_URL/user/data/addStory', {
         method: 'POST',
         headers: {
           'authorization': `Bearer ${token}`,
