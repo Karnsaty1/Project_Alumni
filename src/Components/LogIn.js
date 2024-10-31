@@ -26,7 +26,7 @@ const LogIn = () => {
     e.preventDefault();
     try {
       setLoader(true);
-      const response = await fetch('process.env.REACT_APP_API_URL/user/auth/logIn', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/auth/logIn`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const LogIn = () => {
     e.preventDefault();
     try {
      
-      const response = await fetch('process.env.REACT_APP_API_URL/user/auth/verifyOTP', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/auth/verifyOTP`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

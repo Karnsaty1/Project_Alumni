@@ -22,7 +22,7 @@ const uniqueId=uuidv4();
          try {
           const token =Cookies.get('authToken');
 
-          const response =await fetch('process.env.REACT_APP_API_URL/user/data/success',{
+          const response =await fetch(`${process.env.REACT_APP_API_URL}/user/data/success`,{
             method:'GET',
             headers:{
               'Content-Type':'application/json',
