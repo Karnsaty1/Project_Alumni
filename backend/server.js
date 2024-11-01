@@ -3,13 +3,39 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
+const helmet = require('helmet');
 
-// CORS configuration
-app.use(cors({ origin: '*' })); // Allow all origins (adjust as needed)
+const allowedOrigins = [
+  'https://project-alumni-wczs.vercel.app', 
+  'http://localhost:3000' 
+];
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'", "https://vercel.live"],
+    scriptSrc: ["'self'", "https://vercel.live", "https://project-alumni-wczs.vercel.app"], 
+    
+  },
+}));
+
+
+app.use(cors({
+  origin: function (origin, callback) {
+ 
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, origin);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
+
+
+// app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:3000' })); 
 app.use(express.json());
 app.use(cookieParser());
 
-// Database connection
+
 const { connectDB } = require('./db');
 (async () => {
   try {
