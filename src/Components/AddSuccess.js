@@ -30,7 +30,7 @@ const AddSuccess = () => {
     formData.append('image', details.image); // Image file
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/data/addStory`, {
+      const response = await fetch(`${process.env.REACT_APP_URL}/user/data/addStory`, {
         method: 'POST',
         headers: {
           'authorization': `Bearer ${token}`,
@@ -59,7 +59,7 @@ const AddSuccess = () => {
   return (
     <div>
       <Navbar />
-      <div className="form-container"> {/* Centering container */}
+      <div className="form-container"> 
         {thankYouMessage ? (
           <h2>Thank you for submitting your post. It's currently undergoing review. We'll notify you of the outcome.</h2>
         ) : (
@@ -117,7 +117,7 @@ const AddSuccess = () => {
         )}
       </div>
 
-      {/* Internal CSS */}
+     
       <style>
         {`
           .form-container {

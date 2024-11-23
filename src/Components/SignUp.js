@@ -34,7 +34,7 @@ const SignUp = () => {
         e.preventDefault();
         try {
           setLoader(true);
-          const response = await fetch(`${process.env.REACT_APP_API_URL}/user/auth/signUp`, {
+          const response = await fetch(`${process.env.REACT_APP_URL}/user/auth/signUp`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const SignUp = () => {
     e.preventDefault();
     setLoader(true);
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/user/auth/verifyOTP`, {
+      const response = await fetch(`${process.env.REACT_APP_URL}/user/auth/verifyOTP`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,6 +146,7 @@ const SignUp = () => {
                 id="email"
                 name="email"
                 value={cred.email}
+                required={true}
                 onChange={onChange}
                 placeholder="Enter email"
                 style={{ borderRadius:'10px', marginTop: '-100px',width: '100%', padding: '8px', marginBottom: '15px', textAlign: 'center' }}
@@ -160,6 +161,7 @@ const SignUp = () => {
                 
                 type={showPassword?'text':'password'}
                 id="password"
+                required={true}
                 name="password"
                 onChange={onChange}
                 placeholder="Password"
@@ -187,6 +189,7 @@ const SignUp = () => {
                 type="text"
                 id="passingYear"
                 name="passingYear"
+                required={true}
                 value={cred.passingYear}
                 onChange={onChange}
                 placeholder="Enter Passed Year"
@@ -205,6 +208,7 @@ const SignUp = () => {
                 type="text"
                 id="department"
                 name="department"
+                required={true}
                 value={cred.department}
                 onChange={onChange}
                 placeholder="Enter Department"

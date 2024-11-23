@@ -22,16 +22,18 @@ useEffect( ()=>{
             return;
         }
 
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/user/data/fetchPost`, {
+        const response = await fetch(`${process.env.REACT_APP_URL}/user/data/fetchPost`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'authorization': `Bearer ${token}`
-            }
+            },
+            credentials:'include'
         });
 
         if (!response.ok) {
             console.log('Failed to fetch posts');
+            console.log(response);
             return;
         }
 

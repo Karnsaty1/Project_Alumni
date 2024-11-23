@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
 import Navbar from './Navbar';
 import Loading from './Loading';
 import Cookies from 'js-cookie';
-import image from './sat_img.jpg';
-import {v4 as uuidv4} from 'uuid'; 
+import image from './sat_img.jpg'
 
 const Success = () => {
 
     
-const uniqueId=uuidv4();
+
       const [cards,setCards]=useState([]);
       const [loader, setLoader]=useState(false);
-      const generateLink = (path) => `/${path.slice(1,9)}/${uniqueId}`;
-
-      
       useEffect(()=>{
         setLoader(true);
-
         const starting_01=async ()=>{
          try {
           const token =Cookies.get('authToken');
 
-          const response =await fetch(`${process.env.REACT_APP_API_URL}/user/data/success`,{
+          const response =await fetch(`${process.env.REACT_APP_URL}/user/data/success`,{
             method:'GET',
             headers:{
               'Content-Type':'application/json',
@@ -53,11 +47,7 @@ const uniqueId=uuidv4();
     <div className='container_04'>
 
       {loader?(<Loading/>):(
-
          <>
-        
-        
-        
         <Navbar/>
 
         <style>
@@ -292,31 +282,24 @@ const uniqueId=uuidv4();
           `}
       </style>
 
-<div className='container_00101' style={{display:'flex', flexDirection:'column'}}>
-  <div className='container_002' style={{margin:'auto'}}>
 
-    <h2>Want to add a new story ? </h2>
-    <Link to={generateLink('/addStory/:id')} > <button className='btn btn-primary btn_02' style={{ marginLeft: '20%',
-  width: '55%'}} >Add Here </button></Link>
-  </div>
     <div className='container_03'>
      {cards.map((element,index)=>(
        
       <div className="card" key={index}>
-      <img src={image} className="card-img-top" alt="..." style={{height:'35%'}}/>
+      <img src={image} className="card-img-top" alt="..." style={{height:'45%'}}/>
       <div className="card-body">
       <h3 className="card-title">{element.title}</h3>
       <h5 className="card-title">{element.name}</h5>
       <h6 className="card-title">{element.description}</h6>
+      <p className="card-text">{element.achievement}</p>
   </div>
 </div>
      ))}
-    </div>
     </div>
     </>
   )}
      </div>
   )
 }
-
 export default Success
