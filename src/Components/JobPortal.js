@@ -19,7 +19,7 @@ useEffect( ()=>{
         const token = Cookies.get('authToken'); 
         if (!token) {
             console.log('Token not available');
-            return;
+            
         }
 
         const response = await fetch(`${process.env.REACT_APP_URL}/user/data/fetchPost`, {
